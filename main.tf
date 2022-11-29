@@ -5,11 +5,9 @@ terraform {
     google = {
       source  = "hashicorp/google"
       version = ">= 4.29.0, < 5.0"
+      project = "shoptrue-gke"
     }
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = "~> 2.10"
-    }
+    
     
   }
     provider_meta "google" {
