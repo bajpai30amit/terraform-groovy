@@ -37,4 +37,9 @@ resource "google_compute_instance" "my_new_vm" {
     }
    }
   } 
-  
+  terraform {
+  backend "gcs" {
+    bucket  = "terrafomr-test-amit-win"
+    credentials = "./creds/groovy-test.json"
+  }
+}
