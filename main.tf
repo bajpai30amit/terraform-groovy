@@ -18,6 +18,13 @@ terraform {
   }
   
 }
+ terraform {
+  backend "gcs" {
+    bucket  = "terrafomr-test-amit-win"
+    credentials = "./creds/groovy-test.json"
+  }
+}
+
 resource "google_compute_instance" "my_new_vm" {
   name = "terraform-instance"
   machine_type = "f1-micro"
@@ -37,10 +44,5 @@ resource "google_compute_instance" "my_new_vm" {
     }
    }
  
-  terraform {
-  backend "gcs" {
-    bucket  = "terrafomr-test-amit-win"
-    credentials = "./creds/groovy-test.json"
-  }
-}
+ 
 }
