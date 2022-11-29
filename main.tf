@@ -17,7 +17,7 @@ terraform {
   
 }
  terraform {
-  project = "shoptrue-gke"
+  
   backend "gcs" {
     bucket  = "terrafomr-test-amit-win"
     credentials = "/groovy-test.json"
@@ -25,6 +25,7 @@ terraform {
 }
 
 resource "google_compute_instance" "my_new_vm" {
+  project = "shoptrue-gke"
   name = "terraform-instance"
   machine_type = "f1-micro"
   zone = "us-central1-a"
