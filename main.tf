@@ -5,7 +5,7 @@ terraform {
     google = {
       source  = "hashicorp/google"
       version = ">= 4.29.0, < 5.0"
-      project = "shoptrue-gke"
+      
     }
     
     
@@ -17,6 +17,7 @@ terraform {
   
 }
  terraform {
+  project = "shoptrue-gke"
   backend "gcs" {
     bucket  = "terrafomr-test-amit-win"
     credentials = "/groovy-test.json"
