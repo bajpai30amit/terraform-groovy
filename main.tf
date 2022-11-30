@@ -31,7 +31,7 @@ resource "google_compute_instance" "my_new_vm" {
   
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-9"
+      image = "ubuntu/ubuntu 18.04 LTS"
       }
      }
    
