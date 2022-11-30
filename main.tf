@@ -19,7 +19,7 @@ terraform {
  terraform {
     backend "gcs" {
     bucket  = "terrafomr-test-amit-win"
-    credentials = "./groovy-test.json"
+    credentials = "gs://terrafomr-test-amit-win/groovy-test.json"
   }
 }
 
