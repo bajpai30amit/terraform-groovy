@@ -18,7 +18,7 @@ data "google_service_account_access_token" "default" {
 }
 
 provider "google" {
- project 		= YOUR_PROJECT_ID
+ project 		= "shoptrue-gke"
  access_token	= data.google_service_account_access_token.default.access_token
  request_timeout 	= "60s"
 }
