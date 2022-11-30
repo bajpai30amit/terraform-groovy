@@ -31,7 +31,7 @@ resource "google_compute_instance" "my_new_vm" {
   
   boot_disk {
     initialize_params {
-      image = "ubuntu/ubuntu 18.04 LTS"
+      image = "ubuntu/ubuntu-1804-lts"
       }
      }
    
