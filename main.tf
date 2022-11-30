@@ -1,28 +1,27 @@
-terraform {
-  required_version = ">=0.13"
 
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 4.29.0, < 5.0"
-      
-    }
-    
-    
-  }
-    provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-kubernetes-engine/v23.1.0"
-    
-  }
-  
-}
- terraform {
-    backend "gcs" {
-   # bucket  = "terrafomr-test-amit-win"
-    credentials = "gs://terrafomr-test-amit-win/groovy-test.json"
-  }
+ locals {
+ terraform_service_account = "tf-test@shoptrue-gke.iam.gserviceaccount.com"
 }
 
+provider "google" {
+ alias = "impersonation"
+ scopes = [
+   "https://www.googleapis.com/auth/cloud-platform",
+   "https://www.googleapis.com/auth/userinfo.email",
+ ]
+}
+data "google_service_account_access_token" "default" {
+ provider               	= google.impersonation
+ target_service_account 	= local.terraform_service_account
+ scopes                 	= ["userinfo-email", "cloud-platform"]
+ lifetime               	= "1200s"
+}
+
+provider "google" {
+ project 		= YOUR_PROJECT_ID
+ access_token	= data.google_service_account_access_token.default.access_token
+ request_timeout 	= "60s"
+}
 resource "google_compute_instance" "my_new_vm" {
   project = "shoptrue-gke"
   name = "terraform-instance"
